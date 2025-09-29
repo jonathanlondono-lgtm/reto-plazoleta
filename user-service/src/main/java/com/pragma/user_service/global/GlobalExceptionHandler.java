@@ -27,7 +27,8 @@ public class GlobalExceptionHandler {
         InvalidEmailFormatException.class,
         InvalidAddressFormatException.class,
         EmailAlreadyExistsException.class,
-        ClientNotAuthorizedException.class
+        ClientNotAuthorizedException.class,
+        InvalidCredentialsException.class
     })
     @ResponseBody
     public ResponseEntity<Object> handleCustomExceptions(Exception ex) {
@@ -48,4 +49,3 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
-

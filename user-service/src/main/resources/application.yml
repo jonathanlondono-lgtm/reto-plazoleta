@@ -19,3 +19,5 @@ spring:
   sql:
     init:
       mode: always
+jwt:
+  secret: "LONque1234567890LONque1234567890abcd"

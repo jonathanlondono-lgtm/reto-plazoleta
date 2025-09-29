@@ -16,4 +16,8 @@ public class Employee {
     private String fullName;
     private LocalDate hireDate;
     private Double salary;
+    private Long restaurantId;
+    private String phone;
+    private String taxId;
+    private User user;
 }

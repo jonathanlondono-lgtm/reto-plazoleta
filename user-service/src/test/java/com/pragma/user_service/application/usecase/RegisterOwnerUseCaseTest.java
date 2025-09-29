@@ -53,7 +53,7 @@ class RegisterOwnerUseCaseTest {
         Owner owner = mock(Owner.class);
         User persistedUser = mock(User.class);
         when(persistedUser.getId()).thenReturn(1L);
-        when(userPersistencePort.saveUser(any(User.class))).thenReturn(persistedUser);
+        when(userPersistencePort.saveUser(any(User.class), eq("Propietario"))).thenReturn(persistedUser);
         when(ownerPersistencePort.saveOwner(any(Owner.class))).thenReturn(owner);
         when(userPersistencePort.existsByEmail(email)).thenReturn(false);
         when(userPersistencePort.existsByUsername(username)).thenReturn(false);
@@ -70,6 +70,7 @@ class RegisterOwnerUseCaseTest {
         // Assert
         assertNotNull(result);
         verify(ownerPersistencePort).saveOwner(any(Owner.class));
+        verify(userPersistencePort).saveUser(any(User.class), eq("Propietario"));
     }
 
 

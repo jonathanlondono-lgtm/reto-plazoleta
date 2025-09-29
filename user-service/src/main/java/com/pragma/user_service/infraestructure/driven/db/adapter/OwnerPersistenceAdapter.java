@@ -21,13 +21,9 @@ public class OwnerPersistenceAdapter implements IOwnerPersistencePort {
 
     @Override
     public Owner saveOwner(Owner owner) {
-        log.info("Intentando guardar Owner: {}", owner);
         UserEntity persistedUser = userRepository.findById(owner.getUserId()).orElseThrow();
-        log.info("UserEntity gestionado por JPA: {}", persistedUser);
         OwnerEntity entity = OwnerEntityMapper.toEntity(owner, persistedUser);
-        log.info("OwnerEntity a persistir: {}", entity);
         OwnerEntity saved = ownerRepository.save(entity);
-        log.info("OwnerEntity guardado: {}", saved);
         return OwnerEntityMapper.toDomain(saved);
     }
 

@@ -4,12 +4,7 @@ import com.pragma.user_service.domain.model.Role;
 import com.pragma.user_service.infraestructure.driven.db.entity.RoleEntity;
 
 public class RoleEntityMapper {
-    public static RoleEntity toEntity(Role role) {
-        RoleEntity entity = new RoleEntity();
-        entity.setId(role.getId());
-        entity.setName(role.getName());
-        return entity;
-    }
+    private RoleEntityMapper() {}
 
     public static Role toDomain(RoleEntity entity) {
         return Role.builder()
@@ -17,5 +12,11 @@ public class RoleEntityMapper {
                 .name(entity.getName())
                 .build();
     }
-}
 
+    public static RoleEntity toEntity(Role role) {
+        RoleEntity entity = new RoleEntity();
+        entity.setId(role.getId());
+        entity.setName(role.getName());
+        return entity;
+    }
+}

@@ -12,8 +12,8 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeEntity {
+
     @Id
-    @Column(name = "user_id")
     private Long userId;
 
     @OneToOne
@@ -29,5 +29,13 @@ public class EmployeeEntity {
 
     @Column(name = "salary")
     private BigDecimal salary;
-}
 
+    @Column(name = "restaurant_id")
+    private Long restaurantId;
+
+    @Column(name = "phone", length = 20)
+    private String phone;
+
+    @Column(name = "taxid", unique = true, length = 50)
+    private String taxId;
+}

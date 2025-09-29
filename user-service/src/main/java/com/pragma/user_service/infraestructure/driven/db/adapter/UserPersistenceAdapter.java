@@ -1,5 +1,6 @@
 package com.pragma.user_service.infraestructure.driven.db.adapter;
 
+import com.pragma.user_service.application.ports.output.IUserAuthPersistencePort;
 import com.pragma.user_service.application.ports.output.IUserPersistencePort;
 import com.pragma.user_service.domain.model.User;
 import com.pragma.user_service.infraestructure.driven.db.entity.RoleEntity;
@@ -14,18 +15,16 @@ import java.util.Collections;
 
 @Component
 @RequiredArgsConstructor
-public class UserPersistenceAdapter implements IUserPersistencePort {
+public class UserPersistenceAdapter implements IUserPersistencePort, IUserAuthPersistencePort {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
     @Override
-    public User saveUser(User user) {
-        System.out.println("Buscando rol: 'Propietario'");
-        RoleEntity ownerRole = roleRepository.findByNameIgnoreCase("Propietario")
-            .orElseThrow(() -> new RuntimeException("Role Propietario not found"));
-        System.out.println("Rol encontrado: " + ownerRole);
+    public User saveUser(User user, String roleName) {
+        RoleEntity role = roleRepository.findByNameIgnoreCase(roleName)
+            .orElseThrow(() -> new RuntimeException("Role " + roleName + " not found"));
         UserEntity entity = UserEntityMapper.toEntity(user);
-        entity.setRoles(Collections.singletonList(ownerRole));
+        entity.setRoles(Collections.singletonList(role));
         UserEntity saved = userRepository.save(entity);
         return UserEntityMapper.toDomain(saved);
     }
@@ -38,5 +37,11 @@ public class UserPersistenceAdapter implements IUserPersistencePort {
     @Override
     public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        UserEntity entity = userRepository.findByUsername(username).orElse(null);
+        return entity != null ? UserEntityMapper.toDomain(entity) : null;
     }
 }

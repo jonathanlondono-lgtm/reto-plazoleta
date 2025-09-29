@@ -17,4 +17,9 @@ public class ExceptionMessages {
     public static final String INVALID_ADDRESS_FORMAT = "Invalid address format";
     public static final String INVALID_PHONE_FORMAT = "Invalid phone format";
     public static final String USER_IS_NOT_ADULT = "User must be at least 18 years old";
+    public static final String INVALID_CREDENTIALS = "Invalid username or password";
+    public static final String NOT_ACCES = "YOU DON'T HAVE ACCESS TO THIS RESOURCE";
+    public static final String UNAUTHORIZED_OPERATION = "You are not authorized to perform this operation";
+
+
 }

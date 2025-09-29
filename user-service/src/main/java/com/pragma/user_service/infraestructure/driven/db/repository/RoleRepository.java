@@ -4,6 +4,8 @@ import com.pragma.user_service.infraestructure.driven.db.entity.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 import java.util.Optional;
 
 public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
@@ -14,4 +16,7 @@ public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
 
     @Query(value = "SELECT * FROM roles WHERE TRIM(LOWER(name)) = TRIM(LOWER(:name))", nativeQuery = true)
     Optional<RoleEntity> findByNameNative(@Param("name") String name);
+
+    @Query("SELECT r FROM RoleEntity r JOIN r.users u WHERE u.id = :userId")
+    List<RoleEntity> findRolesByUserId(@Param("userId") Long userId);
 }

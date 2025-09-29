@@ -1,9 +1,8 @@
 package com.pragma.user_service.application.usecase;
 
-import com.pragma.user_service.application.ports.input.IUserServicePort;
+import com.pragma.user_service.application.ports.input.IOwnerServicePort;
 import com.pragma.user_service.application.ports.output.IUserPersistencePort;
 import com.pragma.user_service.application.ports.output.IOwnerPersistencePort;
-import com.pragma.user_service.domain.model.Role;
 import com.pragma.user_service.domain.model.User;
 import com.pragma.user_service.domain.model.Owner;
 import com.pragma.user_service.domain.service.*;
@@ -13,11 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
-public class RegisterOwnerUseCase implements IUserServicePort {
+public class RegisterOwnerUseCase implements IOwnerServicePort {
     private final IUserPersistencePort userPersistencePort;
     private final IOwnerPersistencePort ownerPersistencePort;
     private final EmailValidationService emailValidationService;
@@ -61,7 +59,7 @@ public class RegisterOwnerUseCase implements IUserServicePort {
                 .birthDate(birthDate)
                 .enabled(true)
                 .build();
-        User persistedUser = userPersistencePort.saveUser(user);
+        User persistedUser = userPersistencePort.saveUser(user, "Propietario");
 
         // Crear el Owner usando el usuario persistido
         Owner owner = Owner.builder()
