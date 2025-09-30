@@ -12,7 +12,7 @@ import lombok.*;
 public class OwnerEntity {
 
     @Id
-    private Long userId; // ⚠️ si usas @MapsId no necesitas este campo duplicado
+    private Long userId;
 
     @OneToOne
     @MapsId // usa el mismo valor que el id de User

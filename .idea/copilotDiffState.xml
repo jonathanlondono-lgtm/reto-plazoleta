@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/user-service/src/test/java/com/pragma/user_service/infraestructure/driver/rest/controller/ClientControllerTest.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/user-service/src/test/java/com/pragma/user_service/infraestructure/driver/rest/controller/ClientControllerTest.java" />
+              <option name="updatedContent" value="package com.pragma.user_service.infraestructure.driver.rest.controller;&#10;&#10;import com.pragma.user_service.application.ports.input.IClientServicePort;&#10;import com.pragma.user_service.infraestructure.driver.rest.dto.ClientRegisterRequestDto;&#10;import com.pragma.user_service.infraestructure.driver.rest.dto.ClientRegisterResponseDto;&#10;import org.junit.jupiter.api.BeforeEach;&#10;import org.junit.jupiter.api.Test;&#10;import org.mockito.InjectMocks;&#10;import org.mockito.Mock;&#10;import org.mockito.MockitoAnnotations;&#10;import org.springframework.http.ResponseEntity;&#10;import static org.mockito.Mockito.*;&#10;import static org.junit.jupiter.api.Assertions.*;&#10;&#10;class ClientControllerTest {&#10;    @Mock&#10;    private IClientServicePort clientServicePort;&#10;    @InjectMocks&#10;    private ClientController clientController;&#10;&#10;    @BeforeEach&#10;    void setUp() {&#10;        MockitoAnnotations.openMocks(this);&#10;    }&#10;&#10;    @Test&#10;    void testRegisterClient_ReturnsSuccessResponse() {&#10;        ClientRegisterRequestDto requestDto = new ClientRegisterRequestDto();&#10;        doNothing().when(clientServicePort).registerClient(requestDto);&#10;&#10;        ResponseEntity&lt;ClientRegisterResponseDto&gt; response = clientController.registerClient(requestDto);&#10;        assertNotNull(response);&#10;        assertEquals(200, response.getStatusCodeValue());&#10;        assertEquals(&quot;Cliente creado satisfactoriamente&quot;, response.getBody().getMessage());&#10;        verify(clientServicePort, times(1)).registerClient(requestDto);&#10;    }&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -11,7 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 public class ClientEntity {
     @Id
-    @Column(name = "user_id")
     private Long userId;
 
     @OneToOne
@@ -33,4 +32,7 @@ public class ClientEntity {
 
     @Column(name = "payment_info", length = 255)
     private String paymentInfo;
+
+    @Column(name = "taxid", length = 50, nullable = false)
+    private String taxId;
 }

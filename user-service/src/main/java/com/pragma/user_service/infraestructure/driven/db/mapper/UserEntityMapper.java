@@ -31,7 +31,7 @@ public class UserEntityMapper {
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .enabled(user.isEnabled())
-                .createdAt(user.getCreatedAt())
+                .createdAt(user.getCreatedAt() != null ? user.getCreatedAt() : java.time.LocalDateTime.now())
                 .updatedAt(user.getUpdatedAt())
                 .birthDate(user.getBirthDate())
                 .roles(user.getRoles() != null ? user.getRoles().stream().map(UserEntityMapper::roleDomainToEntity).toList() : null)

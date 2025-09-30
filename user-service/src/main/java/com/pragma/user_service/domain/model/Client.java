@@ -16,4 +16,8 @@ public class Client {
     private String address;
     private Integer loyaltyPoints;
     private String paymentInfo;
+    private String taxId;
+    private User user;
+
+
 }

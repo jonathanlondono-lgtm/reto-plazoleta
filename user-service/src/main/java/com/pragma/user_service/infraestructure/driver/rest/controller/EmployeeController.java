@@ -1,7 +1,6 @@
 package com.pragma.user_service.infraestructure.driver.rest.controller;
 
 import com.pragma.user_service.application.ports.input.IEmployeeServicePort;
-import com.pragma.user_service.domain.model.Employee;
 import com.pragma.user_service.infraestructure.driver.rest.dto.RegisterEmployeeRequestDto;
 import com.pragma.user_service.infraestructure.driver.rest.dto.RegisterEmployeeResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,7 +25,7 @@ public class EmployeeController {
             @RequestBody RegisterEmployeeRequestDto requestDto,
             @RequestHeader("Authorization") String bearerToken
     ) {
-        Employee employee = employeeServicePort.registerEmployee(requestDto, bearerToken);
+        employeeServicePort.registerEmployee(requestDto, bearerToken);
         return ResponseEntity.ok(new RegisterEmployeeResponseDto("Empleado creado satisfactoriamente"));
     }
 }

@@ -48,7 +48,8 @@ public class WebSecurityConfig {
                         "/webjars/**",
                         "/actuator/health",
                         "/auth/login",
-                        "/roles/{id}"
+                        "/roles/{id}",
+                        "clients/register"
                 )
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
